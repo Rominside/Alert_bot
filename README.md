@@ -2,6 +2,7 @@
 
 ##### Шаг 1: создать в Grafana/Alerting/Contact_points Webhook contact point  
 
+![Image alt](https://gitlab.angarasecurity.ru/r.karpov/alert_bot/-/blob/r.karpov/docs/checkpoint.jpeg)
 
 
 ##### Шаг 2: выполнить в консоли сл. команды:  
