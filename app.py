@@ -1,5 +1,4 @@
 import re
-import json
 from bot import main
 from flask import Flask, request
 
