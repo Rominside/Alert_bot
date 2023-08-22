@@ -1,6 +1,6 @@
 import re
 import json
-from main import main
+from bot import main
 from flask import Flask, request
 
 host_name = "0.0.0.0"
@@ -13,18 +13,16 @@ APP_VERSION = "1.0.2"
 
 @app.route("/topic/alerts", methods=['POST'])
 async def update():
-    with open('config.json') as file:
-        templates = json.loads(file.read())
     content = request.json
-    print(content)
     title = "General"
     try:
         title = str(re.search("🔥.*🔥", content["message"]).group(0))
-    except TypeError:
-        print(TypeError)
+    except Exception:
+        try:
+            title = str(re.search("✅.*✅", content["message"]).group(0))
+        except Exception:
+            print(Exception)
 
-    if title == "General":
-        title = str(re.search("✅.*✅", content["message"]).group(0))
     title = title.replace("🔥", "").replace("✅", "").replace(" ", "")
 
     await main(title, content["message"])
