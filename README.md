@@ -8,12 +8,12 @@
 ##### Шаг 2: выполнить в консоли сл. команды:  
 при первом запуске:    
 ```no-highlight
-sudo docker build -t Alert_bot .
+docker build -t alert_bot .
 ```
 ```no-highlight
-sudo docker run -p 127.0.0.1:5002:5002 --name "Alert_bot" Alert_bot
+docker run -p 127.0.0.1:5002:5002 --name "alert_bot" alert_bot
 ``` 
 при последующих запусках:  
 ```no-highlight
-sudo docker start Alert_bot
+docker start Alert_bot
 ```
