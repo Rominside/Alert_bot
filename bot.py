@@ -2,11 +2,12 @@ import json
 from aiogram import Bot
 
 
-async def main(title, msg):
+async def start_bot(title, msg):
     with open('config.json') as file:
         templates = json.loads(file.read())
     bot = Bot(token=templates["token"])
     print(title)
+    print(msg)
     # создаем новую тему, если таковой ещё нет
     if title not in templates["topics"]:
         topic_info = await bot.create_forum_topic(chat_id=templates["chat_id"], name=title)
@@ -19,5 +20,6 @@ async def main(title, msg):
                            message_thread_id=templates["topics"][title])
     await bot.close()
 
+
 if __name__ == '__main__':
-    pass
+    start_bot(title="test_title", msg="test_msg")

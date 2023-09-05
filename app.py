@@ -1,5 +1,5 @@
 import re
-from bot import main
+from bot import start_bot
 from flask import Flask, request
 
 host_name = "0.0.0.0"
@@ -13,6 +13,7 @@ APP_VERSION = "1.0.2"
 @app.route("/topic/alerts", methods=['POST'])
 async def update():
     content = request.json
+    print(content)
     title = "General"
     try:
         title = str(re.search("🔥.*🔥", content["message"]).group(0))
@@ -22,10 +23,8 @@ async def update():
         except Exception:
             print(Exception)
 
-    title = title.replace("🔥", "").replace("✅", "").replace(" ", "")
-
-    await main(title, content["message"])
-    return "200"
+    title = title.replace("🔥", "").replace(" ", "").replace("✅", "")
+    await start_bot(title, content["message"])
 
 
 def start_rest():
